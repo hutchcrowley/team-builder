@@ -43,7 +43,7 @@ const Form = (props) => {
           id="id"
           name="id"
           type="text"
-          value={member.lName}
+          value={member.id}
           onChange={handleChanges}
         />
         <label className="email">eMail: </label>
@@ -53,7 +53,7 @@ const Form = (props) => {
           id="email"
           name="eMail"
           type="text"
-          value={member.eMail}
+          value={member.email}
           onChange={handleChanges}
         />
         <label className="role">

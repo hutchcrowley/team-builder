@@ -16,7 +16,7 @@
 }
 
 .App {
-  height: 450px;
+  height: auto;
   display: flex;
   color: white;
   flex-flow: row wrap;
@@ -81,6 +81,7 @@
     align-content: center;
     justify-content: center;
     height: 500px;
+    display: flex;
   }
 
   .label {
@@ -90,5 +91,6 @@
   .App {
     height: 500px;
     width: 50%;
+    display: flex;
   }
 }
