@@ -1,69 +1,69 @@
 import React, { useState } from 'react'
 
-function Form() {
+const Form = (props) => {
   const [member, setMember] = useState({
-    fName: '',
-    lName: '',
+    id: '',
+    name: '',
+    image: '',
     eMail: '',
     role: ''
   })
 
-  const handleChange = (event) => {
-    setMember({ ...member, [event.targe.name]: event.target.value })
+  const handleChanges = (e) => {
+    setMember({ ...member, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    setMember({ fName: '', lName: '', eMail: '', role: '' })
+  const submitHandler = (e) => {
+    e.preventDefault()
+    const newGuy = {
+      ...member,
+      id: Date.now()
+    }
+    props.addNewMember(newGuy)
+    setMember(newGuy)
   }
 
   return (
-    <div className="App">
-      <div className="members-list">
-
-      </div>
-
-      <div className="app-header">
-        <h2 className="header">Team-Builder App</h2>
-      </div>
-      <form className="form" onSubmit={(event) => handleSubmit()}>
-        <label className="label">
-          first name:{' '}
-          <input
-            className="input"
-            name="fName"
-            type="text"
-            value={member.fName}
-            onChange={(event) => handleChange(event)}
-          />
-        </label>
-        <label className="label">
-          last name:{' '}
-          <input
-            className="input"
-            name="lName"
-            type="text"
-            value={member.lName}
-            onChange={(event) => handleChange(event)}
-          />
-        </label>
-        <label className="label">
-          email:{' '}
-          <input
-            className="input"
-            name="eMail"
-            type="text"
-            value={member.eMail}
-            onChange={(event) => handleChange(event)}
-          />
-        </label>
-        <label className="label">
+    <div>
+      <form className="form" onSubmit={submitHandler}>
+        <label htmlFor="name">Name: </label>
+        <input
+          className="input"
+          placeholder="Enter Name"
+          id="name"
+          name="name"
+          type="text"
+          value={member.name}
+          onChange={handleChanges}
+        />
+        <label htmlFor="id">ID: </label>
+        <input
+          className="input"
+          placeholder="Enter Member ID"
+          id="id"
+          name="id"
+          type="text"
+          value={member.lName}
+          onChange={handleChanges}
+        />
+        <label className="email">eMail: </label>
+        <input
+          className="input"
+          placeholder="Enter Email"
+          id="email"
+          name="eMail"
+          type="text"
+          value={member.eMail}
+          onChange={handleChanges}
+        />
+        <label className="role">
           role:{' '}
           <select
             className="input"
+            id="role"
             name="role"
             value={member.role}
-            onChange={(event) => handleChange(event)}
+            onChange={handleChanges}
           >
             <option />
             <option>Frontend Engineer</option>
@@ -73,7 +73,7 @@ function Form() {
             <option>Tester</option>
           </select>
         </label>
-        <button className="submit-button">Submit</button>
+        <button className="submit-button">Add</button>
       </form>
     </div>
   )
